@@ -1,13 +1,15 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Image } from 'react-native';
 
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.textStyles}>Mitul Savani</Text>
-        <Text style={styles.textStyles}>@</Text>
-        <Text style={styles.textStyles}>SFSU </Text>
+        <View style={styles.view1} >
+        </View>
+        <View style={styles.view2} />
+        <View style={styles.view3} />
+        <View style={styles.view4} />
       </View>
     );
   }
@@ -16,12 +18,23 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'purple',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: 'column',
+    justifyContent: 'center'
   },
-  textStyles: {
-    fontSize: 40,
-    color: 'white'
+  view1: {
+    flex: 0.23,
+    backgroundColor: 'pink'
+  },
+  view2: {
+    flex: 1,
+    backgroundColor: 'powderblue'
+  },
+  view3: {
+    flex: 1,
+    backgroundColor: 'skyblue'
+  },
+  view4: {
+    flex: 2,
+    backgroundColor: 'red'
   }
 });
