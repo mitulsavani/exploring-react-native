@@ -64,11 +64,11 @@ export default class App extends React.Component {
         <View style={styles.view1}>
         </View>
         <View style={styles.view2}>
-          <Image style={styles.mainimage} source = {require('./Holi.jpg')} />
+          <Image style={styles.mainimage} source = {require('./assets/Holi.jpg')} />
         </View>
         <View style={styles.view3}>
-          <Image style={styles.subimage} source = {require('./handholi.jpg')} />
-          <Image style={styles.subimage} source = {require('./holyface1.jpg')} />
+          <Image style={styles.subimage} source = {require('./assets/handholi.jpg')} />
+          <Image style={styles.subimage} source = {require('./assets/holyface1.jpg')} />
         </View>
         <View style={[styles.view4, {backgroundColor: this.state.backgroundColor}]} >
           <View style={{
