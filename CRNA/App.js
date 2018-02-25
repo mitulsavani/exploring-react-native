@@ -1,10 +1,9 @@
 import React from 'react';
-import {  StyleSheet, Text, View, ScrollView, Image, Button, Alert, TextInput, Keyboard } from 'react-native';
+import {  StyleSheet, Text, View, ScrollView, Image, Button, Alert, TextInput, Keyboard, FlatList } from 'react-native';
 
 
-var backgroundcolors = ['green', 'wheat', 'orange', 'blue', 'purple', 'pink', 'yellow', 'aqua'];
-var backgroundcolors1 = ['green', 'wheat', 'orange', 'blue', 'purple', 'pink', 'yellow', 'aqua'];
-
+var backgroundcolors = ['green', '#9B3069', '#D93750', '#4D9397', 'orange', 'blue', 'purple', 'pink', 'yellow', 'aqua'];
+var members = require('./assets/constants');
 
 export default class App extends React.Component {
   constructor(props) {
@@ -50,6 +49,13 @@ export default class App extends React.Component {
       )
     }
   }
+  renderItem = ({item}) => (
+    <View style={styles.listItem}>
+      <Image style={styles.listAvatar} source={{uri: item.image}} />
+      <Text style={styles.listName}>{item.name}</Text>
+      <Text style={styles.listUsername}>@{item.github_username}</Text>
+    </View>
+  );
 
   render() {
     
@@ -66,7 +72,7 @@ export default class App extends React.Component {
         </View>
         <View style={[styles.view4, {backgroundColor: this.state.backgroundColor}]} >
           <View style={{
-              backgroundColor: '#EFB599',
+              backgroundColor: '#9FB89B',
               padding: 10,
               borderRadius: 16,
               shadowRadius: 20,
@@ -86,9 +92,11 @@ export default class App extends React.Component {
               />
         </View>
         <View style={styles.view6}>
-            <Text>
-              hello
-            </Text>
+          <FlatList
+            keyExtractor={(item, index) => index}
+            data={members}
+            renderItem={this.renderItem}
+          />
         </View>
       </ScrollView>
     );
@@ -127,8 +135,32 @@ const styles = StyleSheet.create({
     borderWidth: 1, 
     alignItems: 'center',
     color: 'white',
+    shadowOpacity: 0.5,
   },
 
+  listItem: {
+    padding: 10, 
+    alignItems: 'center', 
+    justifyContent: 'center', 
+    height: 50, 
+    flex: 1, 
+    flexDirection: 'row', 
+    backgroundColor: '#F6CFAF'
+  },
+  listAvatar: {
+    width: 40, 
+    height: 40, 
+    borderRadius: 20
+  }, 
+  listName: {
+    paddingLeft: 10, 
+    flex: 1, 
+    color: '#5B6D85', 
+    fontWeight: 'bold'
+  }, 
+  listUsername: {
+    color: 'gray'
+  },
   view1: {
     flex: 1,
     backgroundColor: 'wheat',
