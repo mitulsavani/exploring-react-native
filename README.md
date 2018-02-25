@@ -31,7 +31,7 @@ In this repo we will **explore the RN ecosystem** by **creating a React Native a
 
 ### Demo
 
-![working_gif_assignment_3](https://imgur.com/a/dJW5y.gif)
+![working_gif_assignment_3](https://imgur.com/jNVH8JP.gif)
 
 ## Vanilla React Native
 
