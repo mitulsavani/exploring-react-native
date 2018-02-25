@@ -1,8 +1,9 @@
 import React from 'react';
-import {  StyleSheet, Text, View, ScrollView, Image, Button, Alert } from 'react-native';
+import {  StyleSheet, Text, View, ScrollView, Image, Button, Alert, TextInput, Keyboard } from 'react-native';
 
 
 var backgroundcolors = ['green', 'wheat', 'orange', 'blue', 'purple', 'pink', 'yellow', 'aqua'];
+var backgroundcolors1 = ['green', 'wheat', 'orange', 'blue', 'purple', 'pink', 'yellow', 'aqua'];
 
 
 export default class App extends React.Component {
@@ -10,18 +11,48 @@ export default class App extends React.Component {
     super(props);
   
     this.state = {
-      backgroundColor: 'red',
+      backgroundColor: '#B67086',
+      text: '',
     };
   }
 
   changeBackground = () => {
     var backgroundColor = backgroundcolors[Math.floor(Math.random()*backgroundcolors.length)];
-      this.setState({
-        backgroundColor: backgroundColor
+
+    this.setState({
+        backgroundColor: backgroundColor,
       });
   }
 
+  handleSubmit = () => 
+  {
+    const { text } = this.state
+    
+    if (this.state.text === 'Passionate') {
+      Keyboard.dismiss
+      Alert.alert(
+        'Success',
+        'Lets play a festival of colors; Holi',
+        [
+          { text: 'OK', onPress: () => console.log('OK Pressed') },
+        ],
+        { cancelable: false })
+    } 
+    else {
+      Keyboard.dismiss
+      Alert.alert(
+        'Invalid',
+        'Ima PASSIONATE tutor',
+        [
+          { text: 'Try again', onPress: () => console.log('Try again pressed') }
+        ],
+        { cancelable: false }
+      )
+    }
+  }
+
   render() {
+    
     return (
       <ScrollView style={styles.container}>
         <View style={styles.view1}>
@@ -30,31 +61,35 @@ export default class App extends React.Component {
           <Image style={styles.mainimage} source = {require('./Holi.jpg')} />
         </View>
         <View style={styles.view3}>
-          <Image style={styles.subimage} source = {require('./buddha.jpg')} />
-          <Image style={styles.subimage} source = {require('./hanuman.png')} />
+          <Image style={styles.subimage} source = {require('./handholi.jpg')} />
+          <Image style={styles.subimage} source = {require('./holyface1.jpg')} />
         </View>
-        <View style={{
-          //flex: 4,
-          backgroundColor: this.state.backgroundColor,
-          height: 400,
-          justifyContent: 'center',
-          alignItems: 'center' }}>
+        <View style={[styles.view4, {backgroundColor: this.state.backgroundColor}]} >
           <View style={{
-              backgroundColor: 'red',
+              backgroundColor: '#EFB599',
               padding: 10,
               borderRadius: 16,
               shadowRadius: 20,
               shadowOpacity: 0.5}}>
 
-            <Button onPress={() => this.changeBackground()}
-            title="Holi Time"
-            color= 'white'
-            />
+              <Button onPress={() => this.changeBackground()}
+              title="Throw Colors"
+              color= 'black' />
           </View>
         </View>
         <View style={styles.view5}>
+              <TextInput
+              style={styles.inputContainer}
+              value={this.state.text}
+              onChangeText={(text) => this.setState({text})}
+              onSubmitEditing={this.handleSubmit}
+              />
         </View>
-
+        <View style={styles.view6}>
+            <Text>
+              hello
+            </Text>
+        </View>
       </ScrollView>
     );
   }
@@ -83,10 +118,21 @@ const styles = StyleSheet.create({
     height: 160,
     shadowOpacity: 0.5
   },
+
+  inputContainer: {
+    height: 50,
+    fontSize: 25, 
+    borderColor: '#EFB599', 
+    borderRadius: 10,
+    borderWidth: 1, 
+    alignItems: 'center',
+    color: 'white',
+  },
+
   view1: {
     flex: 1,
     backgroundColor: 'wheat',
-    height: 35
+    height: 30
   },
  
   view2: {
@@ -98,14 +144,28 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     height: 200,
-    backgroundColor: '#374F5B',
+    //backgroundColor: '#6A5D7B',
+    backgroundColor: 'black',
+
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 20
   },
+  view4: {
+    height: 400,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   view5: {
     flex: 1,
-    backgroundColor: 'wheat',
-    height: 200
+    backgroundColor: '#E37982',
+    height: 200,
+    padding: 60,
+    justifyContent: 'center',
+    alignContent: 'center'
   },
+  view6: {
+    height: 600,
+    backgroundColor: 'lightpink'
+  }
 });
