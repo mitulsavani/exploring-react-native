@@ -2,8 +2,25 @@ import React from 'react';
 import {  StyleSheet, Text, View, ScrollView, Image, Button, Alert } from 'react-native';
 
 
+var backgroundcolors = ['green', 'wheat', 'orange', 'blue', 'purple', 'pink', 'yellow', 'aqua'];
+
 
 export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+  
+    this.state = {
+      backgroundColor: 'red',
+    };
+  }
+
+  changeBackground = () => {
+    var backgroundColor = backgroundcolors[Math.floor(Math.random()*backgroundcolors.length)];
+      this.setState({
+        backgroundColor: backgroundColor
+      });
+  }
+
   render() {
     return (
       <ScrollView style={styles.container}>
@@ -16,22 +33,28 @@ export default class App extends React.Component {
           <Image style={styles.subimage} source = {require('./buddha.jpg')} />
           <Image style={styles.subimage} source = {require('./hanuman.png')} />
         </View>
-        <View style={styles.view4}>
+        <View style={{
+          //flex: 4,
+          backgroundColor: this.state.backgroundColor,
+          height: 400,
+          justifyContent: 'center',
+          alignItems: 'center' }}>
           <View style={{
               backgroundColor: 'red',
               padding: 10,
               borderRadius: 16,
               shadowRadius: 20,
-              shadowOpacity: 0.5} }>
+              shadowOpacity: 0.5}}>
 
-            <Button onPress={() => {
-              Alert.alert("You pressed the button")
-            }}
-            title="Button"
+            <Button onPress={() => this.changeBackground()}
+            title="Holi Time"
             color= 'white'
             />
           </View>
         </View>
+        <View style={styles.view5}>
+        </View>
+
       </ScrollView>
     );
   }
@@ -60,13 +83,6 @@ const styles = StyleSheet.create({
     height: 160,
     shadowOpacity: 0.5
   },
-  button: {
-    backgroundColor: 'red',
-    padding: 10,
-    borderRadius: 16,
-    shadowRadius: 20,
-    shadowOpacity: 0.5
-  },
   view1: {
     flex: 1,
     backgroundColor: 'wheat',
@@ -87,11 +103,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20
   },
-  view4: {
-    flex: 4,
-    backgroundColor: 'white',
-    height: 400,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
+  view5: {
+    flex: 1,
+    backgroundColor: 'wheat',
+    height: 200
+  },
 });
